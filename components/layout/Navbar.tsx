@@ -45,10 +45,12 @@ export default async function Navbar() {
               <div className="p-2 rounded-full bg-gold/10 text-gold border border-gold/20">
                 <Phone className="w-4 h-4" />
               </div>
-              <span className="text-sm font-semibold">03364477446</span>
+            <span className="text-sm font-semibold">03000000000</span>
             </div>
-            <Button className="bg-gold text-white hover:bg-gold/90 h-11 px-6 font-semibold hidden md:flex">
-              Get in Touch
+            <Button className="bg-gold text-white hover:bg-gold/90 h-11 px-6 font-semibold hidden md:flex" asChild>
+              <Link href="/contact">
+                Get in Touch
+              </Link>
             </Button>
           </div>
         </div>

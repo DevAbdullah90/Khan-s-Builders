@@ -19,7 +19,7 @@ const Floating = () => {
       >
         {/* WhatsApp Button */}
         <a
-          href="https://wa.me/923364477446"
+          href="https://wa.me/923000000000"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat on WhatsApp"
@@ -36,7 +36,7 @@ const Floating = () => {
 
         {/* Phone Call Button */}
         <a
-          href="tel:03364477446"
+          href="tel:03000000000"
           aria-label="Call us"
           title="Call us"
           className="

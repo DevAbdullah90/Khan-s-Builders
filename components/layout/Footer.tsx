@@ -53,10 +53,17 @@ export default function Footer() {
               </div>
 
               <div className="flex gap-3">
-                {[Facebook, Instagram, Linkedin, Twitter].map((Icon, idx) => (
+                {[
+                  { Icon: Facebook, href: 'https://facebook.com' },
+                  { Icon: Instagram, href: 'https://instagram.com' },
+                  { Icon: Linkedin, href: 'https://linkedin.com' },
+                  { Icon: Twitter, href: 'https://twitter.com' }
+                ].map(({ Icon, href }, idx) => (
                   <a
                     key={idx}
-                    href="#"
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-gold hover:text-[#050b18] hover:-translate-y-1 transition-all duration-300 group"
                   >
                     <Icon className="w-5 h-5 transition-transform group-hover:scale-110" />
@@ -69,14 +76,21 @@ export default function Footer() {
             <div className="lg:col-span-2">
               <h4 className="text-sm font-black uppercase tracking-[0.2em] text-gold mb-10">Navigation</h4>
               <ul className="space-y-5">
-                {['Home', 'About Us', 'Projects', 'Gallery', 'Our Process', 'Contact'].map((item) => (
-                  <li key={item}>
+                {[
+                  { label: 'Home', href: '/' },
+                  { label: 'About Us', href: '/about' },
+                  { label: 'Projects', href: '/projects' },
+                  { label: 'Gallery', href: '/gallery' },
+                  { label: 'Our Team', href: '/team' },
+                  { label: 'Contact', href: '/contact' }
+                ].map((item) => (
+                  <li key={item.label}>
                     <Link
-                      href={item === 'Home' ? '/' : `/${item.toLowerCase().replace(' ', '-')}`}
+                      href={item.href}
                       className="text-gray-400 hover:text-white transition-all flex items-center group text-sm font-bold"
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-gold mr-3 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
-                      {item}
+                      {item.label}
                     </Link>
                   </li>
                 ))}
@@ -125,7 +139,7 @@ export default function Footer() {
                   </div>
                   <div>
                     <p className="text-[10px] text-gray-500 uppercase font-black tracking-widest mb-1.5">Call Anytime</p>
-                    <p className="text-sm font-bold">0336 4477446</p>
+                    <p className="text-sm font-bold">0300 0000000</p>
                     <p className="text-[10px] text-gold mt-1">Available for Site Visits</p>
                   </div>
                 </li>
@@ -149,16 +163,11 @@ export default function Footer() {
                 © {currentYear} <span className="text-gold font-black">KHANS BUILDERS & DEVELOPERS</span>. All rights reserved.
               </p>
               <div className="h-1 w-1 bg-gray-700 rounded-full hidden md:block" />
-              <div className="flex items-center gap-2 text-xs text-gray-500">
-                <Globe className="w-3 h-3 text-gold" />
-                <span>Operating across Major Cities of Pakistan</span>
-              </div>
             </div>
 
             <div className="flex gap-10">
-              <a href="#" className="text-[10px] font-black uppercase tracking-widest text-gray-500 hover:text-white transition-colors">Privacy</a>
-              <a href="#" className="text-[10px] font-black uppercase tracking-widest text-gray-500 hover:text-white transition-colors">Terms</a>
-              <a href="#" className="text-[10px] font-black uppercase tracking-widest text-gold hover:text-white transition-colors">Design: KB</a>
+              <Link href="/privacy" className="text-[10px] font-black uppercase tracking-widest text-gray-500 hover:text-white transition-colors">Privacy</Link>
+              <Link href="/terms" className="text-[10px] font-black uppercase tracking-widest text-gray-500 hover:text-white transition-colors">Terms</Link>
             </div>
           </div>
         </Container>

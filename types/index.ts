@@ -38,10 +38,21 @@ export interface Project {
   featured?: boolean
   images: (SanityImage | string)[]
   description: string
-  status: 'Completed' | 'In Progress' | 'Planned'
+  status: 'Completed' | 'In Progress' | 'Planned' | 'New Selling' | 'Mixed-Use'
   location: string
   client?: string
   completionDate?: string
+  highlights?: string[]
+  amenities?: string[]
+  projectDetails?: {
+    startingPrice?: string
+    areaRange?: string
+    completion?: string
+    totalUnits?: string
+  }
+  paymentPlans?: (SanityImage | string)[]
+  floorPlans?: (SanityImage | string)[]
+  whatsappNumber?: string
 }
 
 export interface ContactInfo {

@@ -1,55 +1,47 @@
+import React from 'react'
 import Container from '@/components/shared/Container'
-import Section from '@/components/shared/Section'
-import Heading from '@/components/shared/Heading'
 import ProjectCard from '@/components/shared/ProjectCard'
-import { Project } from '@/types'
+import ProjectsHero from '@/components/sections/ProjectsHero'
+import { client } from '@/sanity/lib/client'
+import { projectsQuery } from '@/sanity/lib/queries'
+import { FALLBACK_PROJECTS } from '@/lib/fallback-data'
 
 export default async function ProjectsPage() {
-  // Mock data for project list
-  const projects: Project[] = [
-    {
-      _id: '1',
-      title: 'Modern Office Complex',
-      slug: { current: 'modern-office-complex' },
-      images: [],
-      description: 'A state-of-the-art office complex featuring sustainable design and ultra-modern amenities.',
-      status: 'Completed',
-      location: 'Downtown Silicon Valley'
-    },
-    {
-      _id: '2',
-      title: 'Luxury Residential Tower',
-      slug: { current: 'luxury-residential-tower' },
-      images: [],
-      description: 'High-rise residential building with panoramic city views and premium interior finishes.',
-      status: 'In Progress',
-      location: 'Metropolis North'
-    },
-    {
-      _id: '3',
-      title: 'Industrial Logistics Hub',
-      slug: { current: 'industrial-logistics-hub' },
-      images: [],
-      description: 'A massive logistics center designed for efficiency and high-volume operations.',
-      status: 'Planned',
-      location: 'Gateway Port'
-    }
-  ]
+  let projects = []
+  
+  try {
+    projects = await client.fetch(projectsQuery)
+  } catch (error) {
+    console.error('Failed to fetch projects:', error)
+  }
+
+  // Use fallback if no projects returned
+  const displayProjects = projects.length > 0 ? projects : FALLBACK_PROJECTS
 
   return (
-    <Section className="py-24">
-      <Container>
-        <div className="mb-16">
-          <Heading level={1} className="mb-4">Our Projects</Heading>
-          <p className="text-muted-foreground text-lg">A showcase of our engineering and construction excellence.</p>
-        </div>
-        
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
-            <ProjectCard key={project._id} project={project} />
-          ))}
-        </div>
-      </Container>
-    </Section>
+    <main className="min-h-screen">      
+      <ProjectsHero />
+
+      <section className="py-24 bg-gray-50">
+        <Container>
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+            <div className="max-w-2xl">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight mb-4">
+                Featured <span className="text-gold italic">Landmarks</span>
+              </h2>
+              <p className="text-lg text-gray-500 font-medium">
+                Transforming visions into concrete realities across the capital's finest locations.
+              </p>
+            </div>
+          </div>
+          
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+            {displayProjects.map((project: any) => (
+              <ProjectCard key={project._id} project={project} />
+            ))}
+          </div>
+        </Container>
+      </section>
+    </main>
   )
 }

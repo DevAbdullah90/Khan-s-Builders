@@ -1,6 +1,5 @@
 'use client'
 
-import React from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, Phone } from 'lucide-react'
 import Link from 'next/link'
@@ -72,7 +71,7 @@ export default function CTASection() {
               </Button>
               
               <a 
-                href="tel:03364477446" 
+                href="tel:03000000000" 
                 className="flex items-center gap-4 text-slate-900 hover:text-gold transition-colors font-black group/phone"
               >
                 <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center group-hover/phone:border-gold group-hover/phone:bg-gold/5 transition-all shadow-sm">
@@ -80,7 +79,7 @@ export default function CTASection() {
                 </div>
                 <div className="text-left leading-tight">
                   <p className="text-[10px] uppercase text-slate-400 tracking-widest font-black mb-1">Speak with Experts</p>
-                  <p className="text-xl">0336 4477446</p>
+                  <p className="text-xl">0300 0000000</p>
                 </div>
               </a>
             </motion.div>

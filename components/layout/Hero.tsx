@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Link from 'next/link'
 import Container from '../shared/Container'
 import { Button } from '@/components/ui/button'
 import { ChevronDown, ArrowRight } from 'lucide-react'
@@ -21,13 +22,6 @@ const BANNERS = [
     highlighted: 'Structure and Design',
     subtitle: 'From concept to completion, we deliver unparalleled architectural mastery.'
   }
-]
-
-const STATS = [
-  { label: 'Years Experience', value: '12+' },
-  { label: 'Projects Completed', value: '10+' },
-  { label: 'Happy Families', value: '500+' },
-  { label: 'Awards Won', value: '5+' },
 ]
 
 export default function Hero() {
@@ -59,13 +53,13 @@ export default function Hero() {
               backgroundImage: `url(${BANNERS[current].image})`,
             }}
           />
-          
+
           {/* Layer 3: Gold Glow Gradient */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(212,175,55,0.1),transparent_50%)]" />
-          
+
           {/* Layer 4: Cinematic Vignette (Subtle edge shadow) */}
           <div className="absolute inset-0 bg-[radial-gradient(circle,transparent_60%,rgba(0,0,0,0.5)_100%)] pointer-events-none" />
-          
+
           {/* Layer 5: Navy Blue Industrial Overlays (Based on reference) */}
           <div className="absolute inset-0 bg-linear-to-b from-[#050b18]/80 via-transparent to-[#050b18]/90 w-full h-full" />
           <div className="absolute inset-0 bg-linear-to-r from-[#050b18]/90 via-[#050b18]/40 to-transparent w-full h-full" />
@@ -108,19 +102,20 @@ export default function Hero() {
             transition={{ delay: 1.1 }}
             className="flex flex-wrap gap-5"
           >
-            <Button size="lg" className="bg-gold text-white hover:bg-gold/90 h-14 px-8 text-base group border-none">
-              View Projects
-              <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
+            <Button size="lg" className="bg-gold text-white hover:bg-gold/90 h-14 px-8 text-base group border-none" asChild>
+              <Link href="/projects">
+                View Projects
+                <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </Link>
             </Button>
-            <Button size="lg" variant="outline" className="bg-transparent border-white/50 text-white hover:bg-white/10 h-14 px-8 text-base">
-              Contact Us
+            <Button size="lg" variant="outline" className="bg-transparent border-white/50 text-white hover:bg-white/10 h-14 px-8 text-base" asChild>
+              <Link href="/contact">
+                Contact Us
+              </Link>
             </Button>
           </motion.div>
         </div>
-
-
-
-
+        
         {/* Scroll Indicator */}
         <motion.div
           animate={{ y: [0, 10, 0] }}

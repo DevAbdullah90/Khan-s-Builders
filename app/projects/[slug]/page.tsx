@@ -1,89 +1,94 @@
+import React from 'react'
 import Container from '@/components/shared/Container'
-import Section from '@/components/shared/Section'
-import Heading from '@/components/shared/Heading'
-import { Button } from '@/components/ui/button'
-import { notFound } from 'next/navigation'
+import ProjectHero from '@/components/sections/ProjectHero'
+import ProjectSidebar from '@/components/sections/ProjectSidebar'
+import ProjectAmenities from '@/components/sections/ProjectAmenities'
+import ProjectGallery from '@/components/sections/ProjectGallery'
+import ProjectUnits from '@/components/sections/ProjectUnits'
+import { client } from '@/sanity/lib/client'
+import { projectBySlugQuery } from '@/sanity/lib/queries'
 import { Project } from '@/types'
-
-// This would be replaced by Sanity fetch
-async function getProject(slug: string): Promise<Project | null> {
-  const projects: Project[] = [
-    {
-      _id: '1',
-      title: 'Modern Office Complex',
-      slug: { current: 'modern-office-complex' },
-      images: [],
-      description: 'A state-of-the-art office complex featuring sustainable design and ultra-modern amenities. This project marks a milestone in eco-friendly corporate infrastructure, with smart energy systems and biophilic architectural elements that enhance employee well-being.',
-      status: 'Completed',
-      location: 'Downtown Silicon Valley',
-      client: 'Tech Corp Inc.',
-      completionDate: 'December 2025'
-    }
-  ]
-  return projects.find(p => p.slug.current === slug) || null
-}
+import { FALLBACK_PROJECT } from '@/lib/fallback-data'
+import { motion } from 'framer-motion'
+import { Check, ChevronLeft } from 'lucide-react'
+import Link from 'next/link'
 
 export default async function ProjectDetailsPage({ params }: { params: { slug: string } }) {
-  const project = await getProject(params.slug)
+  // Try to fetch from Sanity
+  let project: Project | null = null
+  try {
+    project = await client.fetch(projectBySlugQuery, { slug: params.slug })
+  } catch (error) {
+    console.error('Error fetching project from Sanity:', error)
+  }
 
+  // Use fallback if not found in Sanity
   if (!project) {
-    notFound()
+    // If it is the fallback slug, use fallback data
+    if (params.slug === 'town-icon') {
+      project = FALLBACK_PROJECT
+    } else {
+      // For any other slug that's not in Sanity, we can still show the fallback for demo purposes or 404
+      // In a real app, you'd probably return notFound() or show a specific demo project
+      project = FALLBACK_PROJECT 
+    }
   }
 
   return (
-    <article>
-      <Section className="bg-muted pt-24 pb-16">
-        <Container>
-          <div className="flex flex-col md:flex-row justify-between items-start gap-8">
-            <div className="flex-1">
-              <Heading level={1} className="mb-4">{project.title}</Heading>
-              <p className="text-xl text-muted-foreground">{project.location}</p>
-            </div>
-            <div className="bg-background border rounded px-6 py-4">
-              <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-1">Status</p>
-              <p className="text-lg font-semibold">{project.status}</p>
-            </div>
-          </div>
-        </Container>
-      </Section>
+    <main className="min-h-screen bg-white text-gray-900">
+      
+      <ProjectHero project={project} />
 
-      <Section>
+      <section className="py-24">
         <Container>
-          <div className="grid lg:grid-cols-3 gap-16">
-            <div className="lg:col-span-2 space-y-12">
-              <div className="bg-muted aspect-video rounded-2xl flex items-center justify-center text-muted-foreground text-xl">
-                Main Project Image Placeholder
-              </div>
-              
-              <div className="space-y-6">
-                <Heading level={3}>Project Overview</Heading>
-                <p className="text-muted-foreground leading-relaxed text-lg">
+          <div className="flex flex-col lg:flex-row gap-16 lg:gap-20">
+            {/* Left Content */}
+            <div className="lg:w-[60%] space-y-16">
+              {/* About Section */}
+              <div className="space-y-8">
+                <h2 className="text-3xl font-black text-gray-900 tracking-tight">About This Project</h2>
+                <p className="text-lg md:text-xl text-gray-500 leading-relaxed font-medium">
                   {project.description}
                 </p>
               </div>
-            </div>
 
-            <aside className="space-y-8">
-              <div className="border rounded-2xl p-8 space-y-6">
-                <Heading level={4}>Project Details</Heading>
-                <div className="space-y-4">
-                  <div>
-                    <p className="text-xs uppercase font-bold text-muted-foreground">Client</p>
-                    <p className="font-medium">{project.client || 'N/A'}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase font-bold text-muted-foreground">Completion Date</p>
-                    <p className="font-medium">{project.completionDate || 'Ongoing'}</p>
+              {/* Gallery Section */}
+              <ProjectGallery images={project.images} />
+
+              {/* Highlights Section */}
+              {project.highlights && (
+                <div className="py-12 border-t border-gray-100">
+                  <h3 className="text-2xl font-black text-gray-900 mb-8 tracking-tight">Key Highlights</h3>
+                  <div className="space-y-4">
+                    {project.highlights.map((highlight, idx) => (
+                      <div key={idx} className="flex gap-4 items-start group">
+                        <div className="w-5 h-5 rounded-full bg-gold/10 flex items-center justify-center shrink-0 group-hover:bg-gold transition-colors">
+                          <Check className="w-3 h-3 text-gold group-hover:text-white" />
+                        </div>
+                        <p className="font-bold text-gray-600 group-hover:text-gray-900 transition-colors">{highlight}</p>
+                      </div>
+                    ))}
                   </div>
                 </div>
-                <Button className="w-full" asChild>
-                  <a href="/contact">Inquire About Similar Projects</a>
-                </Button>
-              </div>
-            </aside>
+              )}
+
+              {/* Amenities Section */}
+              <ProjectAmenities amenities={project.amenities || []} />
+
+              {/* Units / Payment Plans Section */}
+              <ProjectUnits paymentPlans={project.paymentPlans || []} />
+            </div>
+
+            {/* Right Sidebar */}
+            <div className="lg:w-[40%]">
+              <ProjectSidebar 
+                projectDetails={project.projectDetails} 
+                whatsappNumber={project.whatsappNumber}
+              />
+            </div>
           </div>
         </Container>
-      </Section>
-    </article>
+      </section>
+    </main>
   )
 }

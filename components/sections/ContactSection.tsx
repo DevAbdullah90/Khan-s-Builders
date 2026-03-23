@@ -1,15 +1,11 @@
 'use client'
 
-import React from 'react'
 import { motion } from 'framer-motion'
 import { 
   ChevronDown,
   Send,
   MapPin,
-  Phone,
-  Mail
-} from 'lucide-react'
-import Container from '../shared/Container'
+  Phone} from 'lucide-react'
 import Image from 'next/image'
 
 export default function ContactSection() {
@@ -60,7 +56,7 @@ export default function ContactSection() {
                     <Phone className="w-5 h-5" />
                     <span className="text-xs font-black uppercase tracking-widest text-white/50">Line 01</span>
                   </div>
-                  <p className="font-bold text-xl uppercase tracking-tighter">0336 4477446</p>
+                  <p className="font-bold text-xl uppercase tracking-tighter">0300 0000000</p>
                 </div>
               </div>
             </motion.div>
