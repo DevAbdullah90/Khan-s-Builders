@@ -33,13 +33,17 @@ export default function Navbar() {
 
   return (
     <nav className={cn(
-      "fixed top-0 left-0 w-full z-100 transition-all duration-300",
-      isScrolled ? "py-2 md:py-3 bg-black/40 backdrop-blur-lg border-b border-white/5" : "py-4 md:py-6 bg-transparent"
+      "fixed top-0 left-0 w-full z-100 transition-[padding,background-color,backdrop-filter,border-color] duration-500 ease-in-out border-b",
+      isScrolled 
+        ? "py-2 md:py-3 bg-black/40 backdrop-blur-xl border-white/5" 
+        : "py-4 md:py-6 bg-transparent border-transparent"
     )}>
       <Container>
         <div className={cn(
-          "flex justify-between items-center transition-all duration-300 px-4 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl border border-white/10 relative z-50",
-          isScrolled ? "bg-black/20 border-white/5" : "bg-black/20 backdrop-blur-md"
+          "flex justify-between items-center transition-all duration-500 px-4 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl border relative z-50",
+          isScrolled 
+            ? "bg-black/20 border-white/5 backdrop-blur-md" 
+            : "bg-black/20 backdrop-blur-md border-white/10"
         )}>
           <Link href="/" className="flex items-center gap-2 md:gap-3 group">
             <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-gold flex items-center justify-center bg-gold/10 group-hover:bg-gold transition-colors duration-300">
