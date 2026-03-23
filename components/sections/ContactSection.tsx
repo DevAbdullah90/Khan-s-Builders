@@ -10,12 +10,12 @@ import Image from 'next/image'
 
 export default function ContactSection() {
   return (
-    <section className="bg-white pt-20 pb-40 relative overflow-visible">
+    <section className="bg-white pt-16 md:pt-20 pb-32 md:pb-40 relative overflow-visible">
       {/* Centered Wide Container for the main visual */}
       <div className="px-4 md:px-10 lg:px-12 max-w-[1700px] mx-auto relative overflow-visible">
         
         {/* The Wide & Tall Immersive Background Box */}
-        <div className="relative w-full h-[650px] md:h-[850px] rounded-[40px] md:rounded-[100px] overflow-hidden shadow-2xl">
+        <div className="relative w-full h-[500px] sm:h-[600px] md:h-[850px] rounded-[30px] md:rounded-[100px] overflow-hidden shadow-2xl">
           <Image 
             src="/images/contact-bg.jpg" 
             alt="Wide Luxury Project Visual" 
@@ -28,17 +28,17 @@ export default function ContactSection() {
           <div className="absolute inset-0 bg-linear-to-r from-[#050b18]/60 via-[#050b18]/20 to-transparent z-10" />
 
           {/* Top-Left Content: Panoramic Branding */}
-          <div className="relative z-20 p-10 md:p-24 text-white max-w-4xl">
+          <div className="relative z-20 p-6 sm:p-12 md:p-24 text-white max-w-4xl">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <div className="flex items-center gap-4 mb-8">
-                <div className="h-0.5 w-16 bg-gold" />
-                <span className="text-gold font-black text-sm uppercase tracking-[0.5em]">Direct Inquiry Channel</span>
+              <div className="flex items-center gap-3 md:gap-4 mb-6 md:mb-8">
+                <div className="h-0.5 w-12 md:w-16 bg-gold" />
+                <span className="text-gold font-black text-[10px] md:text-sm uppercase tracking-[0.3em] md:tracking-[0.5em]">Direct Inquiry Channel</span>
               </div>
-              <h2 className="text-5xl md:text-[90px] font-black leading-[0.85] tracking-tighter mb-12">
+              <h2 className="text-4xl sm:text-6xl md:text-[90px] font-black leading-[0.85] tracking-tighter mb-8 md:mb-12">
                 LET'S <br />
                 <span className="text-gold">CONSTRUCT.</span>
               </h2>
@@ -49,14 +49,14 @@ export default function ContactSection() {
                     <MapPin className="w-5 h-5" />
                     <span className="text-xs font-black uppercase tracking-widest text-white/50">Studio</span>
                   </div>
-                  <p className="font-bold text-xl uppercase tracking-tighter">Main Samanabad, Lahore</p>
+                  <p className="font-bold text-lg md:text-xl uppercase tracking-tighter">Main Samanabad, Lahore</p>
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-center gap-3 text-gold">
                     <Phone className="w-5 h-5" />
                     <span className="text-xs font-black uppercase tracking-widest text-white/50">Line 01</span>
                   </div>
-                  <p className="font-bold text-xl uppercase tracking-tighter">0300 0000000</p>
+                  <p className="font-bold text-lg md:text-xl uppercase tracking-tighter">0300 0000000</p>
                 </div>
               </div>
             </motion.div>
@@ -64,13 +64,13 @@ export default function ContactSection() {
         </div>
 
         {/* The "Coming Out From Bottom Right" Floating Form Card */}
-        <div className="absolute right-4 md:right-16 lg:right-24 bottom-[-50px] z-30 w-full max-w-[650px] px-4 md:px-0">
+        <div className="absolute left-4 right-4 md:left-auto md:right-16 lg:right-24 bottom-[-80px] md:bottom-[-50px] z-30 w-[calc(100%-32px)] md:w-full md:max-w-[650px]">
           <motion.div
-            initial={{ opacity: 0, y: 150, scale: 0.95 }}
+            initial={{ opacity: 0, y: 100, scale: 0.95 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true }}
             transition={{ type: "spring", damping: 25, stiffness: 80, delay: 0.1 }}
-            className="bg-white rounded-[40px] md:rounded-[70px] p-10 md:p-16 shadow-[0_80px_150px_rgba(0,0,0,0.3)] border border-slate-50 relative overflow-visible"
+            className="bg-white rounded-[30px] md:rounded-[70px] p-8 sm:p-12 md:p-16 shadow-[0_40px_100px_rgba(0,0,0,0.2)] md:shadow-[0_80px_150px_rgba(0,0,0,0.3)] border border-slate-50 relative overflow-visible"
           >
             {/* Form Heading Section */}
             <div className="mb-12">
@@ -107,10 +107,10 @@ export default function ContactSection() {
                 <textarea rows={1} placeholder="Tell us about the project..." className="w-full bg-slate-50 border-b-4 border-slate-100 p-6 outline-hidden focus:border-gold transition-all font-bold text-xl text-slate-900 resize-none" />
               </div>
 
-              <div className="pt-6">
-                <button className="w-full h-22 bg-[#050b18] text-white rounded-[35px] font-black uppercase tracking-[0.5em] text-sm shadow-2xl hover:bg-gold hover:text-[#050b18] hover:scale-[1.01] active:scale-95 transition-all flex items-center justify-center gap-6 group">
+              <div className="pt-4 md:pt-6">
+                <button className="w-full h-16 md:h-22 bg-[#050b18] text-white rounded-[20px] md:rounded-[35px] font-black uppercase tracking-[0.3em] md:tracking-[0.5em] text-xs md:text-sm shadow-2xl hover:bg-gold hover:text-[#050b18] hover:scale-[1.01] active:scale-95 transition-all flex items-center justify-center gap-4 md:gap-6 group">
                   Send Inquiry
-                  <Send className="w-6 h-6 group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-300" />
+                  <Send className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-300" />
                 </button>
               </div>
             </form>

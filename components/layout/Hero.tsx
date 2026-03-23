@@ -68,7 +68,7 @@ export default function Hero() {
 
       <Container className="relative z-10 h-full flex flex-col justify-center">
         {/* Static Content (Does not change with slider) */}
-        <div className="max-w-4xl pt-20">
+        <div className="max-w-4xl pt-28 md:pt-32">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -82,7 +82,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7 }}
-            className="text-5xl md:text-7xl font-bold leading-tight mb-8"
+            className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight mb-6 md:mb-8"
           >
             Building a Higher Standard of <span className="text-gold">Living and Business</span>
           </motion.h1>
@@ -91,7 +91,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9 }}
-            className="text-lg md:text-xl text-gray-300 max-w-2xl mb-12 leading-relaxed"
+            className="text-base md:text-xl text-gray-300 max-w-2xl mb-10 md:mb-12 leading-relaxed"
           >
             Premium Residential and Commercial Real Estate Developers Delivering Quality, Trust and Innovation
           </motion.p>
@@ -100,15 +100,15 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.1 }}
-            className="flex flex-wrap gap-5"
+            className="flex flex-col sm:flex-row gap-4 md:gap-5"
           >
-            <Button size="lg" className="bg-gold text-white hover:bg-gold/90 h-14 px-8 text-base group border-none" asChild>
+            <Button size="lg" className="bg-gold text-white hover:bg-gold/90 h-12 md:h-14 px-6 md:px-8 text-sm md:text-base group border-none w-full sm:w-auto" asChild>
               <Link href="/projects">
                 View Projects
                 <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
-            <Button size="lg" variant="outline" className="bg-transparent border-white/50 text-white hover:bg-white/10 h-14 px-8 text-base" asChild>
+            <Button size="lg" variant="outline" className="bg-transparent border-white/50 text-white hover:bg-white/10 h-12 md:h-14 px-6 md:px-8 text-sm md:text-base w-full sm:w-auto" asChild>
               <Link href="/contact">
                 Contact Us
               </Link>
