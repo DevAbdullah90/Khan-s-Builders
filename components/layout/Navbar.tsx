@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Container from '../shared/Container'
@@ -11,7 +11,16 @@ import { cn } from '@/lib/utils'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const pathname = usePathname()
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const navLinks = [
     { label: 'Home', href: '/' },
@@ -23,9 +32,15 @@ export default function Navbar() {
   ]
 
   return (
-    <nav className="absolute top-0 left-0 w-full z-100 bg-transparent py-4 md:py-6">
+    <nav className={cn(
+      "fixed top-0 left-0 w-full z-100 transition-all duration-300",
+      isScrolled ? "py-2 md:py-3 bg-black/40 backdrop-blur-lg border-b border-white/5" : "py-4 md:py-6 bg-transparent"
+    )}>
       <Container>
-        <div className="flex justify-between items-center bg-black/20 backdrop-blur-md px-4 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl border border-white/10 relative z-50">
+        <div className={cn(
+          "flex justify-between items-center transition-all duration-300 px-4 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl border border-white/10 relative z-50",
+          isScrolled ? "bg-black/20 border-white/5" : "bg-black/20 backdrop-blur-md"
+        )}>
           <Link href="/" className="flex items-center gap-2 md:gap-3 group">
             <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-gold flex items-center justify-center bg-gold/10 group-hover:bg-gold transition-colors duration-300">
               <span className="text-gold group-hover:text-white font-bold text-lg md:text-xl">K</span>
