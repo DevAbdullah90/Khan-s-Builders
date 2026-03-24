@@ -12,7 +12,7 @@ export default function ProjectsHero() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat w-full h-full opacity-50 contrast-125 saturate-50"
           style={{
-            backgroundImage: `url('/images/p-1.avif')`,
+            backgroundImage: `url('/realImages/b-1.jpeg')`,
           }}
         />
 

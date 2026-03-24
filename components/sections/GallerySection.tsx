@@ -23,10 +23,10 @@ export default function GallerySection() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1.2, ease: 'easeOut' }}
-              className="relative aspect-[4/5] w-full rounded-[3rem] overflow-hidden shadow-2xl ring-1 ring-black/5 z-10"
+              className="relative aspect-4/5 w-full rounded-[3rem] overflow-hidden shadow-2xl ring-1 ring-black/5 z-10"
             >
               <img
-                src="/images/real-estate/villa.png"
+                src="/realImages/b-4.jpeg"
                 alt="Khan's Builder Masterpiece"
                 className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
               />
@@ -41,7 +41,7 @@ export default function GallerySection() {
               className="absolute -bottom-16 -right-16 md:-right-24 w-1/2 aspect-square rounded-[2rem] overflow-hidden shadow-uxl border-8 border-white z-30"
             >
               <img
-                src="/images/real-estate/detail.png"
+                src="/realImages/b-5.jpeg"
                 alt="Architectural Detail"
                 className="w-full h-full object-cover"
               />
@@ -98,7 +98,7 @@ export default function GallerySection() {
               className="w-full h-48 rounded-3xl overflow-hidden mb-12 shadow-sm grayscale hover:grayscale-0 transition-all duration-700"
             >
               <img 
-                src="/images/real-estate/living-room.png" 
+                src="/realImages/b-6.jpeg" 
                 alt="Interior Design" 
                 className="w-full h-full object-cover"
               />

@@ -1,10 +1,14 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { FaPhoneAlt, FaWhatsapp, FaFileDownload } from "react-icons/fa";
 
 const Floating = () => {
+  const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(false);
+
+  if (pathname.startsWith("/studio")) return null;
 
   useEffect(() => {
     setIsVisible(true);

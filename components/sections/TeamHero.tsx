@@ -12,7 +12,7 @@ export default function TeamHero() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat w-full h-full opacity-30 grayscale saturate-0"
           style={{
-            backgroundImage: `url('/images/p-3.jpg')`,
+            backgroundImage: `url('/realImages/b-2.jpeg')`,
           }}
         />
 

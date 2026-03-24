@@ -10,61 +10,61 @@ import GalleryHero from '@/components/sections/GalleryHero'
 
 const galleryImages = [
   {
-    src: '/images/real-estate/villa.png',
+    src: '/realImages/b-1.jpeg',
     alt: 'Luxury Modern Villa',
     className: 'md:col-span-2 md:row-span-2',
     id: 0
   },
   {
-    src: '/images/real-estate/living-room.png',
+    src: '/realImages/b-2.jpeg',
     alt: 'Contemporary Living Space',
     className: 'md:col-span-1 md:row-span-1',
     id: 1
   },
   {
-    src: '/images/real-estate/kitchen.png',
+    src: '/realImages/b-3.jpeg',
     alt: 'Minimalist Kitchen Design',
     className: 'md:col-span-1 md:row-span-2',
     id: 2
   },
   {
-    src: '/images/real-estate/pool.png',
+    src: '/realImages/b-4.jpeg',
     alt: 'Infinity Pool View',
     className: 'md:col-span-1 md:row-span-1',
     id: 3
   },
   {
-    src: '/images/real-estate/bedroom.png',
+    src: '/realImages/b-5.jpeg',
     alt: 'Master Suite Luxury',
     className: 'md:col-span-2 md:row-span-1',
     id: 4
   },
   {
-    src: '/images/real-estate/bathroom.png',
+    src: '/realImages/b-6.jpeg',
     alt: 'Spa-like Bathroom',
     className: 'md:col-span-1 md:row-span-1',
     id: 5
   },
   {
-    src: '/images/real-estate/office.png',
+    src: '/realImages/b-7.jpeg',
     alt: 'Modern Home Office',
     className: 'md:col-span-1 md:row-span-1',
     id: 6
   },
   {
-    src: '/images/real-estate/balcony.png',
+    src: '/realImages/b-8.jpeg',
     alt: 'Penthouse View',
     className: 'md:col-span-1 md:row-span-1',
     id: 7
   },
   {
-    src: '/images/real-estate/detail.png',
+    src: '/realImages/b-1.jpeg',
     alt: 'Architectural Excellence',
     className: 'md:col-span-1 md:row-span-1',
     id: 8
   },
   {
-    src: '/images/real-estate/entrance.png',
+    src: '/realImages/b-2.jpeg',
     alt: 'Grand Entrance',
     className: 'md:col-span-1 md:row-span-1',
     id: 9

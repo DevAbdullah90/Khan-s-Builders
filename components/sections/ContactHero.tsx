@@ -12,7 +12,7 @@ export default function ContactHero() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat w-full h-full"
           style={{
-            backgroundImage: `url('/images/office-hq.png')`,
+            backgroundImage: `url('/realImages/b-4.jpeg')`,
           }}
         />
 

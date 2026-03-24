@@ -6,31 +6,37 @@ import Link from 'next/link'
 import Container from '../shared/Container'
 import { Button } from '@/components/ui/button'
 import { ChevronDown, ArrowRight } from 'lucide-react'
+import { cn } from '@/lib/utils'
+import NewsTicker from '../sections/NewsTicker'
 
 const BANNERS = [
   {
     id: 1,
-    image: '/hero-1.jpg', // Placeholder, using generated images would be better but I'll use local paths for now
+    image: '/realImages/b-8.jpeg',
+    video: '/realImages/vid-6.mp4', 
     title: 'Building a Higher Standard of',
     highlighted: 'Living and Business',
     subtitle: 'Premium Residential and Commercial Real Estate Developers Delivering Quality, Trust and Innovation'
   },
   {
     id: 2,
-    image: '/hero-2.jpg',
+    image: '/realImages/b-1.jpeg',
+    video: '/realImages/vid-5.mp4', 
     title: 'Excellence in Every',
     highlighted: 'Structure and Design',
     subtitle: 'From concept to completion, we deliver unparalleled architectural mastery.'
   }
 ]
 
-export default function Hero() {
+export default function Hero({ announcements = [] }: { announcements?: any[] }) {
   const [current, setCurrent] = useState(0)
+  const [videoLoaded, setVideoLoaded] = useState(false)
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % BANNERS.length)
-    }, 6000)
+      setVideoLoaded(false) // Reset for next slide
+    }, 15000) 
     return () => clearInterval(timer)
   }, [])
 
@@ -40,29 +46,49 @@ export default function Hero() {
       <AnimatePresence mode="wait">
         <motion.div
           key={current}
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1.5, ease: 'easeInOut' }}
+          transition={{ duration: 1.5, ease: 'easeInOut' }} 
           className="absolute inset-0 w-full h-full"
         >
-          {/* Layer 2: Sharp Contained image */}
+          {/* Layer 1: Video Background */}
+          {BANNERS[current].video && (
+            <video
+              src={BANNERS[current].video}
+              autoPlay
+              muted
+              loop
+              playsInline
+              onLoadedData={() => setVideoLoaded(true)}
+              className={cn(
+                "absolute inset-0 w-full h-full object-cover transition-all duration-1000",
+                "contrast-[1.15] brightness-[1.1] saturate-[1.1]", // Perceptual quality enhancement
+                videoLoaded ? "opacity-100 scale-100" : "opacity-0 scale-110"
+              )}
+            />
+          )}
+
+          {/* Layer 2: Image Fallback */}
           <div
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat w-full h-full"
+            className={cn(
+              "absolute inset-0 bg-cover bg-center bg-no-repeat w-full h-full transition-opacity duration-1000",
+              videoLoaded ? "opacity-0" : "opacity-100"
+            )}
             style={{
               backgroundImage: `url(${BANNERS[current].image})`,
             }}
           />
 
           {/* Layer 3: Gold Glow Gradient */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(212,175,55,0.1),transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(212,175,55,0.05),transparent_50%)]" />
 
-          {/* Layer 4: Cinematic Vignette (Subtle edge shadow) */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle,transparent_60%,rgba(0,0,0,0.5)_100%)] pointer-events-none" />
+          {/* Layer 4: Cinematic Vignette */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle,transparent_60%,rgba(0,0,0,0.6)_100%)] pointer-events-none" />
 
-          {/* Layer 5: Navy Blue Industrial Overlays (Based on reference) */}
-          <div className="absolute inset-0 bg-linear-to-b from-[#050b18]/80 via-transparent to-[#050b18]/90 w-full h-full" />
-          <div className="absolute inset-0 bg-linear-to-r from-[#050b18]/90 via-[#050b18]/40 to-transparent w-full h-full" />
+          {/* Layer 5: Industrial Overlays - Slightly lightened for better clarity */}
+          <div className="absolute inset-0 bg-linear-to-b from-[#050b18]/70 via-transparent to-[#050b18]/85 w-full h-full" />
+          <div className="absolute inset-0 bg-linear-to-r from-[#050b18]/80 via-[#050b18]/20 to-transparent w-full h-full" />
         </motion.div>
       </AnimatePresence>
 
@@ -125,6 +151,11 @@ export default function Hero() {
           <ChevronDown className="w-8 h-8" />
         </motion.div>
       </Container>
+      
+      {/* News Ticker Integration at bottom of Hero */}
+      <div className="absolute bottom-0 left-0 w-full z-20">
+        <NewsTicker announcements={announcements} />
+      </div>
     </section>
   )
 }

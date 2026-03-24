@@ -1,12 +1,16 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { usePathname } from 'next/navigation'
 import { ArrowRight, Phone } from 'lucide-react'
 import Link from 'next/link'
 import Container from '../shared/Container'
 import { Button } from '../ui/button'
 
 export default function CTASection() {
+  const pathname = usePathname()
+  
+  if (pathname.startsWith('/studio')) return null
   return (
     <section className="relative py-32 bg-white overflow-hidden">
       {/* Decorative Background Elements */}

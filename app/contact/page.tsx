@@ -65,8 +65,8 @@ export default function ContactPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
               >
-                <div className="mb-10 aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl relative group">
-                  <img src="/images/office-hq.png" alt="Khans Builder HQ" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+                <div className="mb-10 aspect-4/3 rounded-[3rem] overflow-hidden shadow-2xl relative group">
+                  <img src="/realImages/b-8.jpeg" alt="Khans Builder HQ" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent flex flex-col justify-end p-8">
                     <span className="text-white text-xl font-black">Main Headquarters</span>
                     <span className="text-gold text-[10px] font-bold uppercase tracking-widest mt-1">Islamabad, Pakistan</span>

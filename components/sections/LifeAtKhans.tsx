@@ -5,12 +5,12 @@ import { motion } from 'framer-motion'
 import Container from '../shared/Container'
 
 const CULTURE_IMAGES = [
-  '/images/p-1.avif',
-  '/images/p-3.jpg',
-  '/images/p-2.jpg',
-  '/images/p4.jpg',
-  '/images/p-1.avif',
-  '/images/p-3.jpg',
+  '/realImages/b-1.jpeg',
+  '/realImages/b-2.jpeg',
+  '/realImages/b-3.jpeg',
+  '/realImages/b-4.jpeg',
+  '/realImages/b-5.jpeg',
+  '/realImages/b-6.jpeg',
 ]
 
 export default function LifeAtKhans() {

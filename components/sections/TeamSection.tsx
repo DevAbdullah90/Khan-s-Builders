@@ -8,22 +8,22 @@ const TEAM = [
   {
     name: "Abdullah Khan",
     role: "CEO & Founder",
-    image: "/images/p-1.avif"
+    image: "/realImages/b-8.jpeg"
   },
   {
     name: "Zainab Malik",
     role: "Head Architect",
-    image: "/images/p-2.jpg"
+    image: "/realImages/b-1.jpeg"
   },
   {
     name: "Umer Sheikh",
     role: "Managing Director",
-    image: "/images/p-3.jpg"
+    image: "/realImages/b-2.jpeg"
   },
   {
     name: "Ayesha Ahmed",
     role: "Project Manager",
-    image: "/images/p4.jpg"
+    image: "/realImages/b-3.jpeg"
   }
 ]
 

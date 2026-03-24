@@ -13,7 +13,7 @@ interface ProjectHeroProps {
 export default function ProjectHero({ project }: ProjectHeroProps) {
   const backgroundImage = project.images?.[0] 
     ? (typeof project.images[0] === 'string' ? project.images[0] : urlFor(project.images[0]).url())
-    : '/images/hero-1.jpg'
+    : '/realImages/b-8.jpeg'
 
   return (
     <section className="relative h-[65vh] min-h-[500px] w-full overflow-hidden bg-black text-white pt-20">

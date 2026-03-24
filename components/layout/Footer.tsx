@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Container from '../shared/Container'
 import {
@@ -16,7 +17,10 @@ import {
 } from 'lucide-react'
 
 export default function Footer() {
+  const pathname = usePathname()
   const currentYear = new Date().getFullYear()
+
+  if (pathname.startsWith('/studio')) return null
 
   return (
     <footer className="bg-[#050b18] text-white overflow-hidden">

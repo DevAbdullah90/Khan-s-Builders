@@ -30,7 +30,7 @@ const DUMMY_PROJECTS: Project[] = [
     slug: { current: 'grand-royal-residency' },
     status: 'Completed',
     location: 'Karachi, Pakistan',
-    images: ["/images/p-1.avif"],
+    images: ["/realImages/b-1.jpeg"],
     description: 'Detailed description about the high-end materials and structural engineering used.'
   },
   {
@@ -40,7 +40,7 @@ const DUMMY_PROJECTS: Project[] = [
     slug: { current: 'nexus-business-hub' },
     status: 'In Progress',
     location: 'Lahore, Pakistan',
-    images: ["/images/p-2.jpg"],
+    images: ["/realImages/b-2.jpeg"],
     description: 'Modern workspace designed for peak productivity and environmental responsibility.'
   },
   {
@@ -50,7 +50,7 @@ const DUMMY_PROJECTS: Project[] = [
     slug: { current: 'skyline-wellness-resort' },
     status: 'Planned',
     location: 'Islamabad, Pakistan',
-    images: ["/images/p-3.jpg"],
+    images: ["/realImages/b-3.jpeg"],
     description: 'An oasis in the heart of the city, focusing on health, wellness, and serenity.'
   },
 ]

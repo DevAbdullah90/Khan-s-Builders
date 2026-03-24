@@ -62,7 +62,7 @@ export default function AboutStory() {
               viewport={{ once: true }}
               className="relative aspect-square rounded-[3rem] overflow-hidden shadow-2xl"
             >
-              <img src="/images/office-hq.png" alt="Khans Builder Headquarters" className="w-full h-full object-cover" />
+              <img src="/realImages/b-1.jpeg" alt="Khans Builder Headquarters" className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-12">
                 <span className="text-gold text-xs font-black uppercase tracking-[0.5em] mb-2">Our Foundation</span>
                 <p className="text-white text-3xl font-black">Quality is not an option, <br /> it's our promise.</p>

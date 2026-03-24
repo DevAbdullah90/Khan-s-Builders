@@ -17,7 +17,7 @@ export default function ContactSection() {
         {/* The Wide & Tall Immersive Background Box */}
         <div className="relative w-full h-[500px] sm:h-[600px] md:h-[850px] rounded-[30px] md:rounded-[100px] overflow-hidden shadow-2xl">
           <Image 
-            src="/images/contact-bg.jpg" 
+            src="/realImages/b-4.jpeg" 
             alt="Wide Luxury Project Visual" 
             fill 
             className="object-cover"

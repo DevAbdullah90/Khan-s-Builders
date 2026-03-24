@@ -11,7 +11,7 @@ export default function AboutHero() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat w-full h-full opacity-60"
           style={{
-            backgroundImage: `url('/images/studio-exterior.jpg')`,
+            backgroundImage: `url('/realImages/b-8.jpeg')`,
           }}
         />
 

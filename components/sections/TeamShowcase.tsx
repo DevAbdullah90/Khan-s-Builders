@@ -9,25 +9,25 @@ const TEAM_MEMBERS = [
     name: "Abdullah Khan",
     role: "Founding Partner & CEO",
     bio: "Visionary leader with 15+ years in high-end real-estate development and strategic master planning.",
-    image: "/images/p-1.avif"
+    image: "/realImages/b-8.jpeg"
   },
   {
     name: "Engr. Zafar Iqbal",
     role: "Director Operations",
     bio: "Pioneer in modern engineering and infrastructure management, overseeing the structural integrity of every landmark.",
-    image: "/images/p-2.jpg"
+    image: "/realImages/b-1.jpeg"
   },
   {
     name: "Sarah Sheikh",
     role: "Head Architect",
     bio: "Master of minimalist and sustainable architecture, bringing a unique aesthetic to Khans' signature projects.",
-    image: "/images/p-3.jpg"
+    image: "/realImages/b-2.jpeg"
   },
   {
     name: "M. Ahmed",
     role: "Project Director",
     bio: "Execution expert dedicated to on-time delivery and uncompromising quality standards across all sites.",
-    image: "/images/p4.jpg"
+    image: "/realImages/b-3.jpeg"
   }
 ]
 

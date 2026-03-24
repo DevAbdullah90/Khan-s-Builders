@@ -11,7 +11,7 @@ export default function GalleryHero() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat w-full h-full opacity-40 mix-blend-luminosity"
           style={{
-            backgroundImage: `url('/images/p-2.jpg')`,
+            backgroundImage: `url('/realImages/b-2.jpeg')`,
           }}
         />
 
