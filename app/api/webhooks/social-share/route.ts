@@ -8,11 +8,20 @@ const FB_ACCESS_TOKEN = process.env.FB_ACCESS_TOKEN;
 export async function POST(req: Request) {
   try {
     const body = await req.json();
+    console.log('[Social Sync] Incoming Webhook Body:', JSON.stringify(body, null, 2));
     
-    // Sanity sends the whole document, we extract what we need
+    // Fallback: If imageUrl is missing, try to get it from the images array (raw document)
+    let finalImageUrl = body.imageUrl;
+    if (!finalImageUrl && body.images?.[0]?.asset?._ref) {
+      // Basic Sanity Image URL construction
+      const assetRef = body.images[0].asset._ref;
+      const [,, id, dimensions, extension] = assetRef.split('-');
+      finalImageUrl = `https://cdn.sanity.io/images/${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}/${process.env.NEXT_PUBLIC_SANITY_DATASET}/${id}-${dimensions}.${extension}`;
+      console.log(`[Social Sync] Generated fallback imageUrl: ${finalImageUrl}`);
+    }
+
     const { 
       title, 
-      imageUrl, 
       postToFacebook, 
       postToInstagram 
     } = body;
@@ -23,21 +32,27 @@ export async function POST(req: Request) {
 
     // 1. Post to Facebook Page
     if (postToFacebook && FB_PAGE_ID && FB_ACCESS_TOKEN) {
-      console.log(`[Social Sync] Posting to Facebook Page: ${FB_PAGE_ID}`);
-      const fbUrl = `https://graph.facebook.com/v21.0/${FB_PAGE_ID}/photos`;
-      
-      const fbResponse = await fetch(fbUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          url: imageUrl,
-          caption: title,
-          access_token: FB_ACCESS_TOKEN,
-        }),
-      });
-      
-      const fbData = await fbResponse.json();
-      results.push({ platform: 'Facebook', success: !fbData.error, data: fbData });
+      if (!finalImageUrl) {
+        console.error('[Social Sync] Skipping Facebook: No imageUrl found.');
+        results.push({ platform: 'Facebook', success: false, error: 'No image URL provided' });
+      } else {
+        console.log(`[Social Sync] Posting to Facebook Page: ${FB_PAGE_ID}`);
+        const fbUrl = `https://graph.facebook.com/v21.0/${FB_PAGE_ID}/photos`;
+        
+        const fbResponse = await fetch(fbUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            url: finalImageUrl,
+            caption: title,
+            access_token: FB_ACCESS_TOKEN,
+          }),
+        });
+        
+        const fbData = await fbResponse.json();
+        console.log('[Social Sync] Facebook API Response:', JSON.stringify(fbData, null, 2));
+        results.push({ platform: 'Facebook', success: !fbData.error, data: fbData });
+      }
     }
 
     // 2. Post to Instagram (Business)
@@ -50,7 +65,7 @@ export async function POST(req: Request) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          image_url: imageUrl,
+          image_url: finalImageUrl,
           caption: title,
           access_token: FB_ACCESS_TOKEN,
         }),
