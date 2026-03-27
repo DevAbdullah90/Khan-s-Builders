@@ -5,10 +5,13 @@ import VideoSlider from '@/components/sections/VideoSlider'
 import GallerySection from '@/components/sections/GallerySection'
 import ContactSection from '@/components/sections/ContactSection'
 import { client } from '@/sanity/lib/client'
-import { announcementsQuery } from '@/sanity/lib/queries'
+import { announcementsQuery, featuredGalleryQuery } from '@/sanity/lib/queries'
 
 export default async function Home() {
-  const sanityAnnouncements = await client.fetch(announcementsQuery)
+  const [sanityAnnouncements, featuredGallery] = await Promise.all([
+    client.fetch(announcementsQuery),
+    client.fetch(featuredGalleryQuery)
+  ])
   
   // Fallback defaults if Sanity is empty
   const announcements = sanityAnnouncements?.length > 0 ? sanityAnnouncements : [
@@ -23,7 +26,7 @@ export default async function Home() {
       <Features />
       <ProjectsSection />
       <VideoSlider />
-      <GallerySection />
+      <GallerySection items={featuredGallery} />
       <ContactSection />
     </article>
   )

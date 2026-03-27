@@ -1,12 +1,35 @@
 'use client'
-
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Container from '../shared/Container'
 import { Button } from '../ui/button'
 import { ArrowRight } from 'lucide-react'
+import { urlFor } from '@/sanity/lib/image'
 
-export default function GallerySection() {
+interface GalleryItem {
+  _id: string
+  title: string
+  image: any
+  category?: string
+}
+
+interface GallerySectionProps {
+  items?: GalleryItem[]
+}
+
+export default function GallerySection({ items = [] }: GallerySectionProps) {
+  // Use Sanity items if available, otherwise fallback to defaults
+  const displayItems = items.length >= 3 ? items : [
+    { _id: 'd1', image: '/realImages/b-4.jpeg', title: "Khan's Builder Masterpiece" },
+    { _id: 'd2', image: '/realImages/b-5.jpeg', title: "Architectural Detail" },
+    { _id: 'd3', image: '/realImages/b-6.jpeg', title: "Interior Design" }
+  ]
+
+  const getImageUrl = (item: any) => {
+    if (typeof item.image === 'string') return item.image
+    return urlFor(item.image).url()
+  }
+
   return (
     <section className="py-32 bg-white text-gray-900 overflow-hidden relative">
       {/* Background Decorative Element */}
@@ -26,8 +49,8 @@ export default function GallerySection() {
               className="relative aspect-4/5 w-full rounded-[3rem] overflow-hidden shadow-2xl ring-1 ring-black/5 z-10"
             >
               <img
-                src="/realImages/b-4.jpeg"
-                alt="Khan's Builder Masterpiece"
+                src={getImageUrl(displayItems[0])}
+                alt={displayItems[0].title || "Khan's Builders Portfolio"}
                 className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
               />
             </motion.div>
@@ -41,8 +64,8 @@ export default function GallerySection() {
               className="absolute -bottom-16 -right-16 md:-right-24 w-1/2 aspect-square rounded-[2rem] overflow-hidden shadow-uxl border-8 border-white z-30"
             >
               <img
-                src="/realImages/b-5.jpeg"
-                alt="Architectural Detail"
+                src={getImageUrl(displayItems[1])}
+                alt={displayItems[1].title || "Khan's Builders Portfolio"}
                 className="w-full h-full object-cover"
               />
             </motion.div>
@@ -98,8 +121,8 @@ export default function GallerySection() {
               className="w-full h-48 rounded-3xl overflow-hidden mb-12 shadow-sm grayscale hover:grayscale-0 transition-all duration-700"
             >
               <img 
-                src="/realImages/b-6.jpeg" 
-                alt="Interior Design" 
+                src={getImageUrl(displayItems[2])} 
+                alt={displayItems[2].title || "Khan's Builders Portfolio"} 
                 className="w-full h-full object-cover"
               />
             </motion.div>
